@@ -1,0 +1,9 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "week1-01-hello-world/lib/algs4.jar"
+    ],
+    "java.project.sourcePaths": [
+        "week1-02-union-find"
+    ]
+}
