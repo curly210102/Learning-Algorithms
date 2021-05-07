@@ -1,0 +1,24 @@
+{
+  "name": "Algorithms",
+  "version": "1.0.0",
+  "description": "Learning Algorithms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "./node_modules/cz-customizable/standalone.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curly210102/Algorithms.git"
+  },
+  "keywords": [],
+  "author": "Curly Brackets <water.curly@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/curly210102/Algorithms/issues"
+  },
+  "homepage": "https://github.com/curly210102/Algorithms#readme",
+  "devDependencies": {
+    "cz-customizable": "6.3.0"
+  }
+}
