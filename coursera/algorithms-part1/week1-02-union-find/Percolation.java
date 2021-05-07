@@ -3,26 +3,10 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
     private boolean[][] grid;
-    private WeightedQuickUnionUF unionFind;
-    private int visualBottom;
-    private int visualTop;
+    private final WeightedQuickUnionUF unionFind;
+    private final int visualBottom;
+    private final int visualTop;
     private int count;
-
-    private void validate(int row, int col) {
-        int n = grid.length;
-        if (row < 1 || row > n) {
-            throw new IllegalArgumentException("row " + row + " is not between 1 and " + n);
-        }
-        if (col < 1 || col > n) {
-            if (row < 1 || row > n) {
-                throw new IllegalArgumentException("col " + col + " is not between 1 and " + n);
-            }
-        }
-    }
-
-    private int index(int row, int col) {
-        return row * grid[row].length + col + 1;
-    }
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
@@ -38,6 +22,20 @@ public class Percolation {
         unionFind = new WeightedQuickUnionUF(ufSize);
     }
 
+    private void validate(int row, int col) {
+        int n = grid.length;
+        if (row < 1 || row > n) {
+            throw new IllegalArgumentException("row " + row + " is not between 1 and " + n);
+        }
+        if (col < 1 || col > n) {
+            throw new IllegalArgumentException("col " + col + " is not between 1 and " + n);
+        }
+    }
+
+    private int index(int row, int col) {
+        return row * grid[row].length + col + 1;
+    }
+
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
         validate(row, col);
@@ -50,8 +48,8 @@ public class Percolation {
         col--;
         grid[row][col] = true;
         count++;
-        int[][] offsets = { { 0, -1 }, { 0, 1 }, { -1, 0 }, { 1, 0 } };
         int point = index(row, col);
+        int[][] offsets = { { 0, -1 }, { 0, 1 }, { -1, 0 }, { 1, 0 } };
         for (int[] offset : offsets) {
             int r = row + offset[0];
             int c = col + offset[1];
