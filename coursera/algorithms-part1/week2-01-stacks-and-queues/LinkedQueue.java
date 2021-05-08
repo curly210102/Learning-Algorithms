@@ -1,0 +1,6 @@
+/**
+ * LinkedQueue
+ */
+public class LinkedQueue {
+
+}
