@@ -2,34 +2,35 @@ import java.util.Iterator;
 
 public class ArrayQueue<E> implements Iterable<E> {
     private int head = 0;
-    private int tail = -1;
-    private E[] arr = (E[]) new Object[1];
+    private int tail = 0;
+    private E[] arr = (E[]) new Object[2];
 
     public void enqueue(E value) {
         int size = arr.length;
-        if (tail != -1 && (tail + 1) % size == head)
-            resize(2 * size);
-        arr[++tail] = value;
+        if ((tail + 1) % size == head)
+            resize(2 * size - 1);
+        arr[tail++] = value;
     }
 
     public E dequeue() {
-        if (tail + 1 == head)
+        if (tail == head)
             return null;
         E value = arr[head];
-        arr[head++] = null;
+        arr[head] = null;
+        head = (head + 1) % arr.length;
         return value;
     }
 
     private void resize(int size) {
         E[] copy = (E[]) new Object[size];
 
+        int curr = head;
         int i = 0;
-        int p = head;
-        while (p != tail) {
-            copy[i++] = arr[p++];
-            p %= arr.length;
+        while (curr != tail) {
+            copy[i] = arr[curr];
+            i++;
+            curr = (head + i) % arr.length;
         }
-        copy[i] = arr[p];
         arr = copy;
         head = 0;
         tail = i;
