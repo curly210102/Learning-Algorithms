@@ -4,7 +4,8 @@
         "coursera/algorithms-part1/lib/algs4.jar"
     ],
     "java.project.sourcePaths": [
+        "coursera/algorithms-part1/week2-01-stacks-and-queues",
         "coursera/algorithms-part1/week1-02-union-find",
-        "coursera/algorithms-part1/week2-01-stacks-and-queues"
+        "coursera/algorithms-part1/Week2-02-elementary-sorts"
     ]
 }
