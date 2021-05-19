@@ -8,7 +8,10 @@ title: 数组：二分法
 
 而二分查找则是一种优化的查找思想：将区间分成两部分，缩小可能范围，只取可能的一部分继续查找。不断折半直到查找到目标，时间复杂度降低至 $O(logN)$。
 
-**特征：针对有序数组的查找优化。具有连续线性空间搜索可以应用二分查找优化。**
+## 特征
+- 二分查找适用于有序数组，需要连续的内存空间
+- 对于小范围的搜索，二分查找相对顺序查找的优势不大。只有数据量比较大的时候，二分查找的优势才会比较明显。
+- 如果数据之间的比较操作非常耗时，二分查找就比顺序遍历更有优势。
 
 ## 解析
 
@@ -93,11 +96,13 @@ function bsearch (nums, target) {
     let right = nums.length - 1;
     while (left <= right) {
         const mid = left + ((right - left) >> 1);
-        if (nums[mid] >= target) {
+        if (nums[mid] > target) {
             right = mid - 1;
-            if (nums[mid] === target && nums[mid - 1] !== target) return mid;
-        } else {
+        } else if (nums[mid] < target) {
             left = mid + 1;
+        } else {
+          if (nums[mid] === target && nums[mid - 1] !== target) return mid;
+          else right = mid - 1;
         }
     }
 
@@ -112,9 +117,14 @@ function bsearch (nums, target) {
 
 > 层级三：寻找场景特征，应用二分法思想
 
-- `while(l < r)` 还是 `while(l <= r)`
-- `nums[mid] === target`
-- `return nums[left]` 还是 `return nums[right]`
+1. 确定寻找的目标
+2. 确定比较的对象
+3. 确定细节
+   - 起始条件：`r = nums.length - 1` 还是 `r = nums.length`，确定是左闭右闭区间还是左闭右开区间
+   - 终止条件：`while(l < r)` 还是 `while(l <= r)`，循环结束的条件`l == r` 或者 `l > r`
+   - 区间上下界更新方法：中值和区间的关系，中值是否需要包含在区间中
+   - 返回值选择：根据结束状态确定返回值
+
 
 [33. 搜索旋转排序数组](../33.搜索旋转排序数组.md)
 [81. 搜索旋转排序数组 II](../81.搜索旋转排序数组-ii.md)
